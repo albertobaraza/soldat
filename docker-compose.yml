@@ -1,0 +1,62 @@
+services:
+  soldat:
+    build: .
+    ports:
+      - "23073:23073/udp"
+      - "23073:23073/tcp"
+      - "23083:23083/tcp"
+    environment:
+      # --- Game rules ---
+      SOLDAT_INI_GAME_GameStyle: "3"             # 0=DM 1=PM 2=TM 3=CTF 4=Rambo 5=Inf 6=HTF
+      SOLDAT_INI_GAME_Capture_Limit: "10"
+      SOLDAT_INI_GAME_Time_Limit: "10"
+      SOLDAT_INI_GAME_Respawn_Time: "180"
+      SOLDAT_INI_GAME_Max_Grenades: "3"
+      SOLDAT_INI_GAME_Friendly_Fire: "0"
+      SOLDAT_INI_GAME_Guns_Collide: "0"
+      SOLDAT_INI_GAME_Loop_Maps: "1"
+      SOLDAT_INI_GAME_Logging: "1"
+      SOLDAT_INI_GAME_Bonus_Frequency: "0"
+      SOLDAT_INI_GAME_NoSniperLine: "1"
+      SOLDAT_INI_GAME_Survival_Mode: "0"
+      SOLDAT_INI_GAME_Realistic_Mode: "0"
+
+      # Enable all weapons (Docker image default only enables Deagles)
+      SOLDAT_INI_GAME_Weapon_1: "1"
+      SOLDAT_INI_GAME_Weapon_2: "1"
+      SOLDAT_INI_GAME_Weapon_3: "1"
+      SOLDAT_INI_GAME_Weapon_4: "1"
+      SOLDAT_INI_GAME_Weapon_5: "1"
+      SOLDAT_INI_GAME_Weapon_6: "1"
+      SOLDAT_INI_GAME_Weapon_7: "1"
+      SOLDAT_INI_GAME_Weapon_8: "1"
+      SOLDAT_INI_GAME_Weapon_9: "1"
+      SOLDAT_INI_GAME_Weapon_10: "1"
+      SOLDAT_INI_GAME_Weapon_11: "1"
+      SOLDAT_INI_GAME_Weapon_12: "1"
+      SOLDAT_INI_GAME_Weapon_13: "1"
+      SOLDAT_INI_GAME_Weapon_14: "1"
+
+      # --- Network ---
+      SOLDAT_INI_NETWORK_Port: "23073"
+      SOLDAT_INI_NETWORK_Max_Players: "32"
+      SOLDAT_INI_NETWORK_Max_Spectators: "10"
+      SOLDAT_INI_NETWORK_Lobby_Register: "1"
+      SOLDAT_INI_NETWORK_ASE_Register: "1"
+      SOLDAT_INI_NETWORK_Disable_Minimap: "1"
+      SOLDAT_INI_NETWORK_Advanced_Spectate: "1"
+      SOLDAT_INI_NETWORK_Allow_Download: "1"
+      SOLDAT_INI_NETWORK_Vote_Percent: "60"
+      SOLDAT_INI_NETWORK_Max_Ping: "400"
+
+      # Secrets — set these in .env
+      SOLDAT_INI_NETWORK_Server_Name: "${SERVER_NAME:-Soldat Server}"
+      SOLDAT_INI_NETWORK_Admin_Password: "${ADMIN_PASSWORD}"
+      SOLDAT_INI_NETWORK_Game_Password: "${GAME_PASSWORD:-}"
+      SOLDAT_INI_NETWORK_Greeting_Message: "${GREETING:-Welcome}"
+
+    volumes:
+      - ./mapslist.txt:/soldat/mapslist.txt:ro
+      - ./scripts:/soldat/scripts:ro
+
+    restart: unless-stopped
