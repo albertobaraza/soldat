@@ -1,5 +1,7 @@
 # Soldat Dedicated Server
 
+[![gameplay](https://static.soldat.pl/screens/modscreen23.jpg)](https://soldat.pl)
+
 A Docker-based [Soldat](https://soldat.pl) dedicated server. The game binary is downloaded automatically at build time — no manual asset management needed.
 
 ## Requirements
