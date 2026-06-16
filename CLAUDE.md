@@ -39,22 +39,8 @@ Startup parameters in env vars **override** any values the image would generate 
 | Host path | Container path | Purpose |
 | --------- | -------------- | ------- |
 | `./mapslist.txt` | `/soldat/mapslist.txt` | Map rotation (read-only) |
-| `./scripts/` | `/soldat/scripts/` | Custom Pascal scripts (read-only) |
 | `soldat_logs` volume | `/soldat/logs/` | Runtime logs (persistent) |
 | `soldat_anticheat` volume | `/soldat/anti-cheat/` | Ban data (persistent) |
-
-## Adding Custom Scripts
-
-Scripts use Pascal syntax. Place each script in its own subdirectory under `scripts/` with an `Includes.txt` manifest:
-
-```text
-scripts/
-  MyScript/
-    Includes.txt   ← lists the .pas files to load
-    Core.pas
-```
-
-See [scripts/README.txt](scripts/README.txt) for full details. Scripting API reference: [devs.soldat.pl/wiki](http://devs.soldat.pl/wiki/index.php?title=Server_Scripting)
 
 ## Ports
 

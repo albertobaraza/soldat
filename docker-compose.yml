@@ -57,6 +57,5 @@ services:
 
     volumes:
       - ./mapslist.txt:/soldat/mapslist.txt:ro
-      - ./scripts:/soldat/scripts:ro
 
     restart: unless-stopped
